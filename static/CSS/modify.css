@@ -1,0 +1,26 @@
+.container{
+    width: 100%;
+}
+
+.align{
+    padding-top: 2%;
+    padding-left: 5%;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table{
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: lightsteelblue;
+    color: black;
+}

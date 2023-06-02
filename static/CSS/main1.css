@@ -1,0 +1,216 @@
+body {
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+	width:960px;
+	margin:auto;
+	background-image: url("../img/blue-snow.png");
+	background-size: 200px 200px;
+	background-repeat:repeat;
+}
+
+#storeName {
+	float:left;
+}	
+
+#header {
+	background-image: url("../img/blue-snow.png");
+	background-size: 200px 200px;
+	background-repeat:repeat;
+	border-bottom:2px solid #096BAE;
+}
+
+#header .search-container {
+  float: left;
+  overflow: hidden;
+  width:75%;
+  margin-top:2.5em;
+  margin-left:3em;
+  display:inline;
+}
+
+#header #search {
+	float:left;
+	padding: 10px;
+	font-size: 17px;
+	border: none;
+	width: 90%;
+	display:inline;
+}
+
+#header .search-container .searchButton {
+	float:left;
+	padding:12 5 12 5px;
+	margin-top:-1.4em;
+	width:10%;
+	background: #ddd;
+	border: none;
+	cursor: pointer;
+	display:inline;
+}
+
+#header .search-container .searchButton:hover {
+  background: #ccc;
+}
+
+#center-header {
+	margin-top: 1em;
+	margin-left: 1.3em;
+}
+
+#navbar {
+	clear:both;
+	margin:auto;
+    padding: 5px;
+    overflow: hidden;
+	width:100%;
+}
+
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+#navbar li {
+  float: left;
+  list-style-type: none;
+  width: 10%;
+  padding:1em;
+  text-align: center;
+}
+
+#navbar li a {
+  display: block;
+  text-decoration: none;
+  color:black;
+  font-size: 17px;
+  font-weight:bold;
+}
+
+#filters {
+	background-image: url("../img/blue-snow-darker.png");
+	background-size: 150px 150px;
+	background-repeat:repeat;
+	min-width:40%;
+	height:600px;
+	flex: 50%;
+}
+
+#filtersList {
+	list-style-type:none;
+}
+
+#filters h4 {
+	margin-left:2em;
+}
+
+#filtersList li {
+	margin-bottom:0.5em;
+}
+
+#resultsTable {
+	margin-left:-2em;
+	width:100%;
+}
+
+#resultsTable a {
+	margin-left:0;
+}
+
+#resultsTable table {
+	width:100%;
+	margin: 0 auto;
+	margin-top:2em;
+	border:none;
+	background-image: url(../img/blue-snow-darker.png);
+    background-size: 150px 150px;
+    background-repeat: repeat;
+}
+
+#resultsTable table td {
+	border:none;
+	padding:20px 4em 20px 4em;
+}
+
+#resultsTable table tr {
+	padding-right: 2em;
+}
+
+
+
+#cartTable table {
+	table-layout: auto;
+	margin-top:2em;
+	border:none;
+	margin-left: 0;
+	border-spacing: 5px;
+}
+
+#cartTable table td .cart {
+	border:none;
+	padding:0 3 0 3em;
+	padding-bottom:20px;
+}
+
+#cartTable table td{
+	border:none;
+	padding:0 10 0 0em;
+	padding-bottom:20px;
+}
+
+#bookData {
+	width: 500px;
+}
+
+a {
+	color:black;
+	text-decoration:none;
+}
+
+button:focus { 
+	outline-style: none; 
+}
+
+#backHome {
+	margin-top:2em;
+	text-align:center;
+}
+
+.here {
+	color: blue;
+	text-decoration: underline;
+}
+
+
+#modifyTable td {
+	background-color: white;
+	text-align:center;
+	padding:10 5 10 5px;
+}
+
+#modifyTable th {
+	text-align:center;
+	padding:5px;
+}
+
+.rightTester{
+	display: inline;
+}
+
+.checkoutButton {
+	background-color: white;
+	color: black;
+	border: 2px solid #555555;
+	margin: .3 0 0 1em;
+	width: auto;
+	height: auto;
+	padding:5px;
+}
+  
+.checkoutButton:hover {
+	background-color: rgb(78, 182, 92);
+	color: black;
+	cursor: pointer;
+}

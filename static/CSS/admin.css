@@ -1,0 +1,81 @@
+.container{
+    width: 100%;
+    overflow: hidden;
+    padding-bottom:50px;
+}
+
+.smallerContainer{
+    overflow:hidden;
+    float:right;
+    width: 75%;
+    display: table-cell; 
+}
+
+.sales{
+    width: 74%;
+    /**IDK why it wont let me set the width as 75% while keeping it on the same line*/
+    height: 300px;
+    float: right;
+    display: table-cell;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid black; 
+    padding: 35px 30px;
+    text-align: center;
+    display: inline-block;
+  }
+
+.bookContent{
+    overflow:hidden;
+    height:25%;
+}
+
+.bookContainer .leftThing{
+    width: 33.3%;
+    height: 100%;
+    float: left;
+    display: table-cell;
+
+}
+.rightThing{
+    width: 33.3%;
+    height: 100%;
+    float: right;
+    display: table-cell;
+
+}
+.centerThing{
+    width: 33.3%;
+    height: 100%;
+    float: left;
+    display: table-cell;
+}
+
+
+.title{
+    text-decoration: underline;
+    padding-left: 20px;
+    padding-top: 10px;
+    margin: 0;
+    
+}
+
+.centerImg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.blankSpace {
+    padding: 20px;
+    position: absolute;
+    top: 0;
+}
+
+.textCenter{
+    text-align:center;
+}
