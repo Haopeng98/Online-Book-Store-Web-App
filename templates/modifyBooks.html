@@ -1,0 +1,31 @@
+{% extends "header.html" %}
+{% block content %}
+
+  <div class="container">
+      <h1 class="align">Modify Books</h1>
+      
+      <a href="/admin"><button type="submit" name="submit" class="blueButton">Back</button></a>
+      <a href="/addBook"><button type="submit" name="submit" class="blueButton">Add a Book</button></a>
+      <p></p>
+      <table id="modifyTable">
+          <tr>
+            <th>Book ID</th>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Price</th>
+            <th>Inventory</th>
+          </tr>
+          {% for i in range(0,len) %}
+          <tr>
+              <td>{{books[i].id}}</td>
+              <td><a href="/book/{{books[i].id}}" class="here">{{books[i].title}}</a></td>
+              <td>{{books[i].authors[0]}}</td>
+              <td>{{books[i].isbn}}</td>
+              <td>{{ "%.2f"|format(books[i].price) }}</td>
+              <td>{{books[i].quantity}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+  </div>
+  {%endblock content %}

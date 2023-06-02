@@ -1,0 +1,8 @@
+{% include "head.html" %}
+<div class="search-container">
+    <form action="{{ url_for('search') }}", method="POST">
+        {{ search_form.hidden_tag() }}
+        {{ search_form.search_term(id="search", placeholder="Search by title, keyword, or ISBN") }}<br>
+        {{ search_form.submitSearch(class="searchButton")}}
+    </form>
+</div>

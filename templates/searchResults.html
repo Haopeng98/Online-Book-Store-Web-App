@@ -1,0 +1,32 @@
+{% extends "header.html" %}
+{% block content %}
+	
+	<div class="floatContain">
+		<div id="notCart">
+			<div class="row">
+				<div id="resultsTable">
+				<h2>Displaying results for: {% print term %}</h2>
+					<table>
+						{% for book in results %}
+
+						<tr>
+							<td><a href="/book/{{ book.id }}"><img src="{{ book.cover_image.filename }}" width="120" height="200"></a></td>
+							<td>
+								<p><i>Title:</i> {{ book.title }}</p>
+								<p><i>Author:</i> {{ book.authors[0] }}</p>
+								<p><i>ISBN:</i> {{ book.isbn }}</p>
+								<p><i>Price:</i> {{ "$%.2f"|format(book.price) }}</p>
+								<p><i>Rating:</i> {{ "%.1f"|format(book.rating) }}</p>
+							</td>
+						</tr>
+
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+	
+		
+	</div>
+	
+	{%endblock content %}

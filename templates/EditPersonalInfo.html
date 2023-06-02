@@ -1,0 +1,16 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="signup-form">
+    <h2>Edit Personal Info</h2>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.first_name(class="form-control", placeholder="First Name", value=current_user.first_name ) }}<br>
+        {{ form.last_name(class="form-control", placeholder="Last Name", value=current_user.last_name) }}<br>
+        {{ form.phone_number(class="form-control", placeholder="Phone Number", value=current_user.phone_number) }}<br>
+        {{ form.promotion_subscription.label }}
+        {{ form.promotion_subscription(checked=current_user.is_subscribed) }}<br>
+        {{ form.submit(class="blueButton", size=100, width=50)}}
+    </form>
+</div>
+
+{%endblock content %}

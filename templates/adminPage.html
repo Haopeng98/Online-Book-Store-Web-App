@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+	
+{% block content %}
+    <div class="container">
+        <h1>Admin Homepage</h1>
+        <!--<div class="smallerContainer">-->
+            <div class="bookContainer">
+                <div class="leftThing">
+                    <a href="/books" class="button1">Modify Books</a>
+                </div>
+                
+                <div class="centerThing">
+                    <a href="/users" class="button1">Modify Users</a>
+                </div>
+
+                <div class="rightThing">
+                    <a href="/promos" class="button1">Modify Promotions</a>
+                </div>
+            </div>
+
+
+            <!--<div class="sales">
+                <h3 class="title"> Sales Stats</h3>
+                <img src="../static/img/sales.png" alt="Fake sales diagram"  class="centerImg">
+
+            </div>-->
+        
+    </div>
+
+    {%endblock content %}

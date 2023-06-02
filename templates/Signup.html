@@ -1,0 +1,115 @@
+{% extends "header.html" %}
+{% block content %}
+	
+	
+	<div class="signup-form">
+		<h2>Sign Up</h2>
+		<form action="" method="POST">
+			{{ form.hidden_tag() }}
+			<div class="row">
+				<div class="column">
+					{{ form.first_name(class="form-control", placeholder="First Name") }}<br>
+                    {% for error in form.first_name.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.last_name(class="form-control", placeholder="Last Name") }}<br>
+                    {% for error in form.last_name.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.email(class="form-control", placeholder="Email") }}<br>
+                    {% for error in form.email.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.confirm_email(class="form-control", placeholder="Confirm Email") }}<br>
+                    {% for error in form.confirm_email.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+					
+				</div>
+
+				<div class="column">
+					{{ form.phone_number(class="form-control", placeholder="Phone Number") }}<br>
+                    {% for error in form.phone_number.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.password(class="form-control", placeholder="Password") }}<br>
+                    {% for error in form.password.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}<br>
+                    {% for error in form.confirm_password.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+				</div>
+			</div>
+			
+			<label for="mailList">Sign up for our mailing list!</label>
+            {{ form.subscribe(id="mailList") }}
+			
+			<h2>Shipping Info (Optional)</h2>
+			<div class="row">
+				<div class="column">
+					{{ form.address1(class="form-control", placeholder="Address Line 1") }}<br>
+                    {% for error in form.address1.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.address2(class="form-control", placeholder="Address Line 2") }}<br>
+                    {% for error in form.address2.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.city(class="form-control", placeholder="City") }}<br>
+                    {% for error in form.city.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+				</div>
+				<div class="column">
+					{{ form.state(class="form-control", placeholder="State") }}<br>
+					{{ form.zip_code(class="form-control", placeholder="Zip Code") }}<br>
+                    {% for error in form.zip_code.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+				</div>
+			</div>
+			
+			<h2>Payment Info (Optional)</h2>
+			<div class="row">
+				<div class="column">
+					{{ form.ctype(class="form-control", placeholder="Card Type") }}<br>
+                    {% for error in form.ctype.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.card_num(class="form-control", placeholder="Card Number") }}<br>
+                    {% for error in form.card_num.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.card_name(class="form-control", placeholder="Name On Card") }}<br>
+                    {% for error in form.card_name.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+				</div>
+				<div class="column">
+					{{ form.expdate(class="form-control", placeholder="Expiration Date (MM/YY)") }}<br>
+                    {% for error in form.expdate.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+					{{ form.sec_code(class="form-control", placeholder="Security Code XXX") }}<br>
+                    {% for error in form.sec_code.errors %}
+                         <span class="error">{{ error }}</span>
+                    {% endfor %}
+				</div>
+			</div>
+			<div class="row">
+				<div class="column"></div>
+				<div class="column">
+					<button type="submit" name="submit" class="blueButton">Submit</button>
+				</div>
+			</div>
+		</form>
+		<h4>Already Have an Account?</h4>
+		<a href="/login">
+			<button type="submit" name="submit" class="blueButton">Log In</button>
+		</a>
+	</div>
+	
+	{%endblock content %}
+	

@@ -1,0 +1,61 @@
+{% extends "header.html" %}
+{% block content %}
+	<div class="floatContain">
+		<div id="cart">
+			<div id="cartTable">
+				<table>
+					{% for cart_item in current_user.cart.cart_items %}
+					<tr>
+						<td><a href="/book/{{ cart_item.book.id }}"><img src="{{ cart_item.book.cover_image.filename }}" width="120" height="200"></a></td>
+						<td>
+							<b><i>Title:</i></b> <br>{{ cart_item.book.title }}<br>
+							<b><i>Author:</i></b> <br>{{ cart_item.book.authors[0] }}<br>
+							<b><i>ISBN:</i></b> <br>{{ cart_item.book.isbn }}<br>
+							<b><i>Quantity:</i></b> <br>{{ cart_item.quantity }}<br>
+							<b><i>Price:</i></b> <br>{{ "$%.2f"|format(cart_item.book.price * cart_item.quantity)}}
+						</td>
+						<td class="rightTester">
+							<label for="quantitySelect">Update Quantity:</label><br><br>
+							<input type="number" id="quantitySelect{{cart_item.book.id}}" min="0", max="{{cart_item.book.quantity}}" value="{{ cart_item.quantity }}">
+							<button onclick="update_quantity({{ cart_item.book_id }})" class="hoverButton">Update</button>
+							<a href="/remove_from_cart/{{cart_item.book.id}}"><button type="submit" name="submit" class="deleteButton">Remove</button></a>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	
+		<div id="orderSum">
+			<h2>Order Summary</h2>
+			{% for cart_item in current_user.cart.cart_items %}
+				<ul id="orderSumList">
+					<li><i>{{ cart_item.book.title }}</i> x{{ cart_item.quantity }}  &nbsp;&nbsp;&nbsp;&nbsp; <br><b>${{ "%.2f"|format(cart_item.book.price * cart_item.quantity) }}</b></li>
+				</ul>
+			{% endfor %}
+			<ul id="orderSumList">
+				<li><p>Tax: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TBD</p></li>
+				<li><p>Shipping: &nbsp;&nbsp;&nbsp;&nbsp; TBD</p></li>
+			</ul>
+			<ul id="orderSumList">
+				<li><p>SubTotal: &nbsp;&nbsp;&nbsp;&nbsp; <b><i>${{ "%.2f"|format(current_user.cart.subtotal) }}</i></b></p></li>
+				{% if current_user.cart.cart_items|length > 0 %}
+					<a href="/checkout">
+						<button type="submit" name="submit" class="cartIcon checkoutButton">Checkout</button>
+					</a>
+				{% endif %}
+			</ul>
+			
+		</div>
+	</div>
+
+	<script>
+		function update_quantity(book_id) {
+			var input_id = "quantitySelect" + book_id
+			var new_quantity = document.getElementById(input_id).value
+			window.location.replace("/update_quantity/" + book_id + "/" + new_quantity)
+		}
+	</script>
+	
+{%endblock content %}
+	

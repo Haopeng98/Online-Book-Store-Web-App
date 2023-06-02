@@ -1,0 +1,45 @@
+{% include "head.html" %}
+
+<body>
+	<div id="header">
+		<div id="center-header">
+			<a href="/home">
+				<img src="../static/img/sahara.png" height="110" id="storeName" />
+			</a>
+			{% include "searchBar.html" %}
+		</div>
+		<div id="navbar">
+			<ul>
+				<li><a href="/home">Home</a></li>
+				{% if current_user.is_authenticated %}
+
+				{% if current_user.get_privilege_str() == 'Admin' %}
+
+				<li><a href="/admin">Admin</a></li>
+
+				{% else %}
+
+				<li><a href="/profile">Profile</a></li>
+				<li><a href="/cart">Cart</a></li>
+
+				{% endif %}
+
+				<li><a href="/logout" style="color: #cc0000">Logout</a></li>
+				{% else %}
+				<li><a href="/login">Login</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	{% if messages %}
+	{% for category, message in messages %}
+	<div class="alert alert-{{ category }}">
+		{{message}}
+	</div>
+	{% endfor %}
+	{% endif %}
+	{% endwith %}
+	{% block content %}{% endblock content %}
+
+</body>

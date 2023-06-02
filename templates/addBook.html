@@ -1,0 +1,33 @@
+{% extends "header.html" %}
+{% block content %}
+	<div class="signup-form">
+		<h2>Add Book</h2>
+		<form action="" enctype="multipart/form-data" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="column">
+                    {{ form.isbn(class="form-control", placeholder="ISBN") }}<br>
+                    {{ form.title(class="form-control", placeholder="Title") }}<br>
+                    {{ form.edition(class="form-control", placeholder="Edition") }}<br>
+                    {{ form.description(class="form-control", placeholder="Description") }}<br>
+                    {{ form.author_fname(class="form-control", placeholder="Author First Name") }}<br>
+                    {{ form.author_lname(class="form-control", placeholder="Author Last Name") }}<br>
+                    {{ form.publisher(class="form-control", placeholder="Publisher") }}<br>
+                </div>
+                <div class="column">
+                    {{ form.publishing_year(class="form-control", placeholder="Publishing Year (YYYY)") }}<br>
+                    {{ form.cover_image(class="form-control", placeholder="Cover Image") }}<br>
+                    {% for error in form.cover_image.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.category(class="form-control", placeholder="Category") }}<br>
+                    {{ form.price(class="form-control", placeholder="Price") }}<br>
+                    {{ form.quantity(class="form-control", placeholder="Quantity") }}<br>
+                    {{ form.rating(class="form-control", placeholder="Rating") }}<br>
+                    <a href="/books">{{ form.submit(class="blueButton", size=100)}}</a>
+                </div>
+            </div>
+		</form>
+	</div>
+	
+{%endblock content %}

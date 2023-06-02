@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="container">
+  <h1 class="align">Users List</h1>
+  <table id="modifyTable">
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>User Email</th>
+      <th>User State</th>
+      <th>Suspend/Unsuspend User</th>
+    </tr>
+    {% for i in range(0,len) %}
+    <tr>
+      <td>{{ users[i].id }}</td>
+      <td>{% print users[i].first_name,' ' ,users[i].last_name %}</td>
+      <td>{{ users[i].email }}</td>
+      <td>{{ users[i].get_state_str() }}</td>
+      {% if users[i].get_state_str() == "Suspended" %}
+        <td><a href="/unsuspend_user/{{users[i].id}}"><button type="submit" name="submit">Unsuspend User</button></a></td>
+      {% elif users[i].get_state_str() == "Inactive" %}
+        <td><button type="submit" name="submit">Suspend User</button></td>
+      {% elif users[i].get_privilege_str() == "Admin" %}
+        <td></td>
+      {% else %}
+        <td><a href="/suspend_user/{{users[i].id}}"><button type="submit" name="submit">Suspend User</button></a></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<a href="/admin"><button type="submit" name="submit" class="blueButton">Back</button></a>
+{%endblock content %}

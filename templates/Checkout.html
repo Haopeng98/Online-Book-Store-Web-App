@@ -1,0 +1,83 @@
+{% extends "header.html" %}
+{% block content %}
+	
+<form action="" method="POST">
+	{{ form.hidden_tag() }}
+	<div class="floatContain">
+		<div class="payment-form">
+			<div class="row">
+				<div class="column">
+					<h2>Payment Info:</h2>
+					<div class="signup-form">
+						{% if current_user.payment_cards[0] %}
+							
+							{{ form.card_type(class="form-control", value=current_user.payment_cards[0].type)}}
+							{{ form.card_num(class="form-control", placeholder="Card Number") }}
+							{{ form.card_name(class="form-control", placeholder="Name on Card", value=current_user.payment_cards[0].name_on_card)}}
+							{{ form.exp_date(class="form-control", placeholder="Exp. Date - (MM/YY)", value=current_user.payment_cards[0].expiration_date.month ~ "/" ~ year)}}<br></li>
+							{{ form.sec_code(class="form-control", placeholder="Security Code") }}
+						
+						{% else %}
+							<ul>
+								<li>{{ form.card_type(class="form-control", placeholder="Card Type") }}<br></li>
+								<li>{{ form.card_num(class="form-control", placeholder="Card Number") }}<br></li>
+								<li>{{ form.card_name(class="form-control", placeholder="Name on Card") }}<br></li>
+								<li>{{ form.exp_date(class="form-control", placeholder="Exp. Date - (MM/YY)")}}<br></li>
+								<li>{{ form.sec_code(class="form-control", placeholder="Security Code") }}<br></li>
+							</ul>
+						{% endif %}
+					</div>
+				</div>
+				<div class="column">
+					<h2>Shipping Address:</h2>
+					<div class="signup-form">
+						{% if current_user.address.street_1 %}
+							{{ form.address1(class="form-control", placeholder="Address Line 1", value=current_user.address.street_1) }}
+							{% if current_user.address.street_2 %}
+								{{ form.address2(class="form-control", placeholder="Address Line 2", value=current_user.address.street_2) }}
+							{% else %}
+								{{ form.address2(class="form-control", placeholder="Address Line 2") }}	
+							{% endif %}
+							{{ form.city(class="form-control", placeholder="City", value=current_user.address.city) }}
+							{{ form.state(class="form-control", default=current_user.address.state) }}
+							{{ form.zip_code(class="form-control", placeholder="Zipcode", value=current_user.address.zip_code) }}
+						{% else %}
+							{{ form.address1(class="form-control", placeholder="Address Line 1") }}
+							{{ form.address2(class="form-control", placeholder="Address Line 2") }}
+							{{ form.city(class="form-control", placeholder="City") }}
+							{{ form.state(class="form-control", placeholder="State") }}
+							{{ form.zip_code(class="form-control", placeholder="Zipcode") }}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			{{ form.promo_code.label }} {{ form.promo_code(class="form-control", placeholder="Promo Code") }} <br>
+			{% for error in form.promo_code.errors %}
+			<span class="error">{{ error }}</span>
+			{% endfor %}
+		</div>
+	
+		<div id="orderSum">
+			<h2>Order Summary</h2>
+			{% for book in current_user.cart.books %}
+				<ul id="orderSumList">
+					<li><i>{{ book.title }}</i> x{{current_user.cart.get_quantity(book.id)}} &nbsp;&nbsp;&nbsp;&nbsp; <b>${{ "%.2f"|format(book.price) }}</b></li>
+				</ul>
+			{% endfor %}
+			<ul id="orderSumList">
+				<li><p>Subtotal: &nbsp;&nbsp;&nbsp;&nbsp; <b>$ {{"%.2f"|format(current_user.cart.subtotal)}}</b></p></li>
+				<li><p>Tax: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>${{ "%.2f"|format(current_user.cart.subtotal * 0.07) }}</b></p></li>
+				<li><p>Shipping: &nbsp;&nbsp;&nbsp;&nbsp; <b>$3.99</b></p></li>
+				<li><p>Discount: &nbsp;&nbsp;&nbsp;&nbsp; <b>None</b></p></li>
+			</ul>
+			<ul id="orderSumList">
+				<li><p>Total: &nbsp;&nbsp;&nbsp;&nbsp; <b>${{ "%.2f"|format(current_user.cart.subtotal + (current_user.cart.subtotal * 0.07) + 3.99) }}</b></p></li>
+				{{ form.submit(class="hoverButton", size=100, width=50)}}
+			</ul>
+			
+		</div>
+
+	</div>
+</form>
+	
+{%endblock content %}

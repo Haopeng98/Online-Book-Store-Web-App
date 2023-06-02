@@ -1,0 +1,32 @@
+{% extends "header.html" %}
+{% block content %}
+	
+
+    <div class="container">
+        <img src="{{book.cover_image.filename}}" class="image" alt="Book cover of {{book.title}}" width="350" height="450">
+
+        <div class="content">
+            <h1 class="unbold">{{book.title}}</h1>
+            
+            <p>By {{book.authors[0]}}</p>
+            <p>ISBN: {{book.isbn}}</p>
+            <p>Category: {{book.category}}</p>
+            <h1>${{ "%.2f"|format(book.price) }}</h1>
+            <form action="" method='POST'>
+                {{ form.hidden_tag() }}
+                {{ form.quantity.label }} {{ form.quantity(class="form-control", type="number", value="1", min="1", max=book.quantity) }}
+                {% if current_user.is_authenticated %}
+                    {% if current_user.get_privilege_str() != "Admin"%}
+                        {{ form.addToCart(class="form-control", placeholder="Add To Cart") }}
+                    {% endif %}
+                {% endif %}
+            </form>
+            <p>
+                {{book.description}}
+            </p>
+        </div>
+    </div>
+    
+    
+    
+    {%endblock content %}

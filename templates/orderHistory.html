@@ -1,0 +1,64 @@
+{% extends "header.html" %}
+{% block content %}
+    
+    <div class="floatContain">
+        <div id="notCart">
+            <div class="row">
+                <div id="resultsTable">
+                <h2>Previous Orders:</h2>
+                    <table>
+                        {% if orders|length == 0 %}
+                            <h3> No recent orders </h3>
+                        {% else %}
+                            {% for order in orders|reverse: %}
+                                <tr>
+                                    <td>
+                                        <p><b><i>Confirmation ID:</i></b> {{current_user.id}}{{order.id}}</p>
+                                        <p><b><i>Total:</i></b> {{"$%.2f"|format(order.total)}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><b><i>Items:</i></b></p>
+                                    </td>
+                                </tr>
+                                {% if order.cart.cart_items|length > 3 %}
+                                    {% for i in range(0, order.cart.cart_items|length, 3) %}
+                                    <tr>
+                                        {% for j in range(i, i+3)  %}
+                                        <td>
+                                            <a href="/book/{{ order.cart.cart_items[j].book.id }}"><img src="{{ order.cart.cart_items[j].book.cover_image.filename }}" width="120" height="200"></a>
+                                            <p>{{order.cart.cart_items[j].book.title}} x{{order.cart.cart_items[j].quantity}}<br> {{"$%.2f"|format(order.cart.cart_items[j].book.price)}} </p>
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        {% for j in range(0, order.cart.cart_items|length)  %}
+                                        <td>
+                                            <a href="/book/{{ order.cart.cart_items[j].book.id }}"><img src="{{ order.cart.cart_items[j].book.cover_image.filename }}" width="120" height="200"></a>
+                                            <p>{{order.cart.cart_items[j].book.title}} x{{order.cart.cart_items[j].quantity}}<br> {{"$%.2f"|format(order.cart.cart_items[j].book.price)}} </p>
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endif %}
+                                <tr>
+                                    <td>
+                                        <p><b><i>Order Placed:</i></b> {{order.placed_datetime.strftime("%m/%d/%y - %H:%M")}}</p>
+                                        <hr style="height:4px;border-width:0;color:black;background-color:black">
+                                    </td>
+                                </tr>
+                            {%endfor%}
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        
+    </div>
+    
+{%endblock content %}
+
+        

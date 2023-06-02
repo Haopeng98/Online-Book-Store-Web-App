@@ -1,0 +1,78 @@
+{% extends "header.html" %}
+	
+{% block content %}
+	<div class="banner">
+		<img src="../static/img/banner.jpg" class="banner">
+	</div>
+	
+	<h2 class="homeheader">New Releases</h2>
+	<div id="featuredCat">
+		{% if len > 3 %}
+			{% for i in range(len-4,len)|reverse %}
+				<div class="gallery">
+					<a href="/book/{{books[i].id}}">
+						<img src="{{books[i].cover_image.filename}}" alt="{{books[i].title}}" width="600" height="400">
+					</a>
+				</div>
+			{% endfor %}
+		{% else %}
+			{% for i in range(0,4) %}
+			<div class="gallery">
+				<a href="/home">
+					<img src="../static/img/nonfiction.jpg" alt="Nonfiction" width="600" height="400">
+				</a>
+			</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+	
+	<h2 class="homeheader">Featured Category: <i>Mystery</i></h2>
+	<div class="threeWide">
+		{% if len_myst > 3 %}
+			{% for i in range(0, 3) %}
+				<div class="gallery">
+					<a href="/book/{{mystery[i].id}}">
+						<img src="{{mystery[i].cover_image.filename}}" alt="{{mystery[i].title}}" width="600" height="400">
+					</a>
+				</div>
+			{% endfor %}
+		{% else %}
+			{% for i in range(0,3) %}
+			<div class="gallery">
+				<a href="/home">
+					<img src="../static/img/nonfiction.jpg" alt="Nonfiction" width="600" height="400">
+				</a>
+			</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+	
+	<h2 class="homeheader">Almost Gone!</h2>
+	<div class="threeWide">
+		{% if len > 2 %}
+			{% for i in range(0, 3)|reverse %}
+				<div class="gallery">
+					<a href="/book/{{almost_gone[i].id}}">
+						<img src="{{almost_gone[i].cover_image.filename}}" alt="{{almost_gone[i].title}}" width="600" height="400">
+					</a>
+				</div>
+			{% endfor %}
+		{% else %}
+			{% for i in range(0,3) %}
+			<div class="gallery">
+				<a href="/home">
+					<img src="../static/img/nonfiction.jpg" alt="Nonfiction" width="600" height="400">
+				</a>
+			</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+	
+	<div id="blankSpace"></div>
+	
+	<div class="banner">
+		<img src="../static/img/banner.jpg" class="banner">
+	</div>
+</body>
+
+{%endblock content %}

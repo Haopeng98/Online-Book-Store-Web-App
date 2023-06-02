@@ -1,0 +1,16 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="signup-form">
+    <h2>Edit Address Info</h2>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.address1(class="form-control", placeholder="Address Line 1", value=current_user.address.street_1) }}<br>
+        {{ form.address2(class="form-control", placeholder="Address Line 2", value=current_user.address.street_2) }}<br>
+        {{ form.city(class="form-control", placeholder="City", value=current_user.address.city) }}<br>
+        {{ form.state(class="form-control") }}<br>
+        {{ form.zip_code(class="form-control", placeholder="Zipcode", value=current_user.address.zip_code) }}<br>
+        {{ form.submit(class="blueButton", size=100, width=50)}}
+    </form>
+</div>
+
+{%endblock content %}

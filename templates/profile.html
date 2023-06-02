@@ -1,0 +1,92 @@
+{% extends "header.html" %}
+{% block content %}
+    <!--Pass in current_user, populate page based on user data-->
+    <div class="container">
+        <div class="left">
+            <img src="../static/img/profilePic.jpg" alt="Profile picture">
+            <h2 class="leftAlignHeader">{% print current_user.first_name, " ", current_user.last_name %}</h2> <br>
+
+            <h3 class= "leftAlignHeader"> Personal Information</h3>
+            <p class="leftAlignText">Phone Number:</p>
+            <p class="leftAlignText">{% print current_user.phone_number %}</p>
+            <br>
+
+            <p class="leftAlignText">Email:</p>
+            <p class="leftAlignText">{% print current_user.email %}</p>
+            <br>
+
+            <a href="/reset_password_request" class="leftAlignText here">Change Password</a>
+            <br>
+            <br>
+
+            <a href="/edit/personal_info">
+			    <button type="submit" name="submit" class="hoverButton">Edit Info</button>
+            </a>
+        </div>
+
+        <div class="smallerContainer">
+            <div class="center border">
+                <h3 class="title"> Address</h3>
+                <p class="titleInfo">Update shipping address</p>
+                {% if current_user.address %}
+                    <p class="boxContent">{% print current_user.address %}</p>
+                {% else %}
+                    <p class="boxContent">No address on file</p>
+                {% endif %}
+                <a href="/edit/address">
+                    <button type="button" class="hoverButton">Edit Address</button>
+                </a>
+            </div>
+            
+            <div class="yo">
+                <h3 class="title"> Payment Methods</h3>
+                <p class="titleInfo">Update credit card information</p>
+                {% if current_user.payment_cards %}
+                    {% for card in current_user.payment_cards %}
+                        <p class="boxContent">
+                            ************{{card.last_four_digits}}
+                            <a href="/remove_payment_card/{{card.id}}"><button class="deleteButton">Delete</button></a>
+                        </p>
+                    {% endfor %}
+                {% else %}
+                    <p class="boxContent">No card info on file</p>
+                {% endif %}
+
+                <a href="/edit/cards">
+                    <button type="button" class="hoverButton">Edit Payment Information</button> 
+                </a>
+            </div>
+    
+            </div>
+            <div class="smallerContainer">
+            <div class="recentOrders">
+                <h3 class="title">Most Recent Order</h3>
+                
+                <div class="recentOrderContent">
+                    
+                    <!--<div class="bookLeft"></div>-->                
+                    <div class="bookCenter">
+                        {% if orders|length == 0 %}
+                            <h3> No recent orders </h3>
+                        {% else %}
+                            
+                            <p><b>Items:</b></p>
+                            {% for item in orders[-1].cart.cart_items %}
+                                <a href="/book/{{item.book.id}}"><p>{{item.book.title}} x{{item.quantity}}<br> {{"$%.2f"|format(item.book.price)}} </p></a>
+                            {% endfor %}
+                            <p><b>Total:</b><br> {{"$%.2f"|format(orders[-1].total)}}</p>
+                            <p><b>Order Placed:</b><br> {{orders[-1].placed_datetime.strftime("%m/%d/%y - %H:%M")}}</p>
+                            <a href="/order_history"><button class="hoverButton">View Order History</button></a>
+                        {% endif %}
+                        
+                    </div>
+                    <!--<div class="bookRight"></div>-->
+                
+                    
+                </div>
+            </div>
+        </div>      
+    </div>
+    
+
+    {% endblock content %}   
